@@ -1,3 +1,4 @@
+const path = require("path");
 module.exports = {
   // this is the entry point, this file usually imports all other modules in your application
   entry: "./src/index.js", // webpack will start from this file when running the build process.
@@ -6,7 +7,7 @@ module.exports = {
   // pass to the directory where this file should be generated
   output: {
     filename: "bundle.js",
-    path: "./dist", // the output dir webpack will automatically generate this.
+    path: path.resolve(__dirname, "./dist"), // the output dir webpack will automatically generate this.
   },
   mode: "none",
 };
