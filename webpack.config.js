@@ -22,11 +22,25 @@ module.exports = {
         // here avaliable propery can be asset/resource asset/inline asset
         // so every time we try to import a jpg file, webpack will check if it has a rule for it.
         // if rule doesn't found it will give a error which means unfortunately, I don't know how to import this file.
-        type: "asset/resource",
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 3 * 1024, // 3kb
+          },
+        },
       },
       {
         test: /\.(ttf)$/,
         type: "asset/resource",
+      },
+      {
+        test: /\.txt/,
+        type: "asset/source",
+      },
+      {
+        test: /\.css$/,
+        // use is used for loader
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

@@ -1,0 +1,11 @@
+.btn {
+  outline: none;
+  background: salmon;
+  color: white;
+}
+
+.para {
+  background-color: red;
+  color: white;
+  font-size: 1.5rem;
+}
