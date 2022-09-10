@@ -42,6 +42,11 @@ module.exports = {
         // use is used for loader
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.scss$/,
+        // use is used for loader
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
     ],
   },
 };
