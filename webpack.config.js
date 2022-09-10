@@ -8,6 +8,7 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "./dist"), // the output dir webpack will automatically generate this.
+    publicPath: "dist/", // in version 4 or below default was empty string that why image was not loaded properly
   },
   mode: "none",
 
