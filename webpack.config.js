@@ -1,6 +1,7 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   // this is the entry point, this file usually imports all other modules in your application
@@ -58,5 +59,6 @@ module.exports = {
       // enable the caching
       filename: "style.[contenthash].css",
     }),
+    new CleanWebpackPlugin(),
   ],
 };
