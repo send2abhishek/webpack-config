@@ -14,6 +14,16 @@ module.exports = {
     publicPath: "auto", // in version 4 or below default was empty string that why image was not loaded properly
   },
   mode: "development",
+  devServer: {
+    port: 9000,
+    static: {
+      directory: path.resolve(__dirname, "./dist"),
+    },
+    devMiddleware: {
+      index: "index.html",
+      writeToDisk: true,
+    },
+  },
 
   // this is javascript object
   module: {
