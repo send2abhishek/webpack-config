@@ -1,6 +1,4 @@
 const path = require("path");
-const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // installed via npm
 
@@ -11,11 +9,11 @@ module.exports = {
   // here we can specify a name of the file which will be generated as a result of the build process
   // pass to the directory where this file should be generated
   output: {
-    filename: "bundle.[contenthash].js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "./dist"), // the output dir webpack will automatically generate this.
     publicPath: "auto", // in version 4 or below default was empty string that why image was not loaded properly
   },
-  mode: "none",
+  mode: "development",
 
   // this is javascript object
   module: {
@@ -45,12 +43,12 @@ module.exports = {
       {
         test: /\.css$/,
         // use is used for loader
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.scss$/,
         // use is used for loader
-        use: [MiniCssExtractPlugin, "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.hbs$/,
@@ -60,11 +58,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new TerserPlugin(),
-    new MiniCssExtractPlugin({
-      // enable the caching
-      filename: "style.[contenthash].css",
-    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Webpack in Action",
