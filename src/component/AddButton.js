@@ -1,11 +1,12 @@
 import "./addButton.css";
 
 class AddButton {
+  btnClass = "btn";
   render() {
     const otherContainer = document.querySelector("#other");
     const button = this.createElement("button");
     button.innerHTML = "click me";
-    button.classList.add("btn");
+    button.classList.add(this.btnClass);
     button.onclick = () => {
       const para = this.createElement("p");
       para.innerHTML = "you clicked";
