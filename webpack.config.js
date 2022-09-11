@@ -2,6 +2,7 @@ const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // installed via npm
 
 module.exports = {
   // this is the entry point, this file usually imports all other modules in your application
@@ -12,7 +13,7 @@ module.exports = {
   output: {
     filename: "bundle.[contenthash].js",
     path: path.resolve(__dirname, "./dist"), // the output dir webpack will automatically generate this.
-    publicPath: "dist/", // in version 4 or below default was empty string that why image was not loaded properly
+    publicPath: "auto", // in version 4 or below default was empty string that why image was not loaded properly
   },
   mode: "none",
 
@@ -51,6 +52,11 @@ module.exports = {
         // use is used for loader
         use: [MiniCssExtractPlugin, "css-loader", "sass-loader"],
       },
+      {
+        test: /\.hbs$/,
+        // use is used for loader
+        use: ["handlebars-loader"],
+      },
     ],
   },
   plugins: [
@@ -60,5 +66,10 @@ module.exports = {
       filename: "style.[contenthash].css",
     }),
     new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: "Webpack in Action",
+      description: "some desc",
+      template: "src/template/index.hbs",
+    }),
   ],
 };
